@@ -1,0 +1,7 @@
+apiVersion: hipster.arctiq.com/v1alpha1
+kind: Hipsterkind
+metadata:
+  name: example-hipsterkind
+spec:
+  # Add fields here
+  size: 3

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hipster-op
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: hipster-op
+  template:
+    metadata:
+      labels:
+        name: hipster-op
+    spec:
+      serviceAccountName: hipster-op
+      containers:
+        - name: hipster-op
+          # Replace this with the built image name
+          image: REPLACE_IMAGE
+          command:
+          - hipster-op
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "hipster-op"
